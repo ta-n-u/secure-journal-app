@@ -10,8 +10,9 @@ const createHabit = async (req, res) => {
     const habit = await Habit.create({ userId: req.userId, name, frequency });
     res.status(201).json(habit);
   } catch (err) {
-    res.status(500).json({ message: 'Failed to create habit', error: err.message });
-  }
+  console.error('checkIn error:', err);
+  res.status(500).json({ message: 'Failed to check in', error: err.message });
+}
 };
 
 // @route GET /api/habits
@@ -41,7 +42,7 @@ const deleteHabit = async (req, res) => {
 // Body: { date } -- defaults to today, format YYYY-MM-DD
 const checkIn = async (req, res) => {
   try {
-    const date = req.body.date || new Date().toISOString().slice(0, 10);
+    const date = req.body?.date || new Date().toISOString().slice(0, 10);
 
     const habit = await Habit.findOne({ _id: req.params.id, userId: req.userId });
     if (!habit) return res.status(404).json({ message: 'Habit not found' });
