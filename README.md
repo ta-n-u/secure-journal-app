@@ -45,23 +45,6 @@ secure-journal-app/
 ├── pages/                # Login, Signup, Diary, Habits
 └── api/axios.js
 
-## Running locally
-
-**Backend**
-```bash
-cd backend
-npm install
-cp .env.example .env   # fill in your MongoDB URI and a JWT secret
-npm run dev
-```
-
-**Frontend**
-```bash
-cd frontend
-npm install
-npm run dev
-```
-
 ## API endpoints
 
 | Method | Route | Description |
